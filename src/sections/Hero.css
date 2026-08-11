@@ -1,0 +1,201 @@
+/* Pixel-Perfect 2-Column Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 80px 0 20px 0;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EBF4F1 50%, #F3F8F5 100%);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.hero-ref-container {
+  width: 100%;
+  max-width: var(--container-max-width, 1240px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* Left Content Column */
+.hero-ref-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Eyebrow text matching reference */
+.hero-ref-eyebrow {
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 700;
+  color: var(--primary-green, #0D7A57);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Main Headline matching reference wrap & typography */
+.hero-ref-title {
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 3.125rem; /* 50px */
+  font-weight: 800;
+  line-height: 1.15;
+  color: #111827;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+
+/* Paragraph text matching reference */
+.hero-ref-description {
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
+  font-size: 1rem; /* 16px */
+  font-weight: 500;
+  color: #4B5563;
+  line-height: 1.55;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+
+/* Buttons Row matching reference */
+.hero-ref-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Primary Button matching reference green rounded rect */
+.btn-ref-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: #2ECC71;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
+  cursor: pointer;
+}
+
+.btn-ref-primary:hover {
+  background-color: #27AE60;
+  transform: translateY(-1px);
+}
+
+/* Secondary Button matching reference outline style */
+.btn-ref-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: #ffffff;
+  color: #1A1A1A;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid #718096;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-ref-secondary:hover {
+  background-color: #F8FAFC;
+  border-color: #2D3748;
+}
+
+/* Right Image Column */
+.hero-right-image-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-right-photo {
+  width: 100%;
+  max-width: 520px;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 20px 45px rgba(12, 45, 34, 0.12);
+  border: 4px solid #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.hero-right-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 52px rgba(12, 45, 34, 0.16);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-section {
+    height: auto;
+    min-height: 80vh;
+    max-height: none;
+  }
+
+  .hero-split-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-ref-title {
+    font-size: 2.375rem;
+  }
+
+  .hero-right-image-wrapper {
+    justify-content: center;
+  }
+
+  .hero-right-photo {
+    height: 360px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    height: auto;
+    min-height: 70vh;
+    max-height: none;
+    padding: calc(var(--header-height, 80px) + 30px) 0 60px 0;
+  }
+
+  .hero-ref-title {
+    font-size: 2rem;
+  }
+
+  .hero-ref-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ref-actions a,
+  .hero-ref-actions button {
+    width: 100%;
+  }
+
+  .hero-right-photo {
+    height: 280px;
+  }
+}

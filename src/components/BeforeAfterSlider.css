@@ -1,0 +1,139 @@
+.before-after-container {
+  background-color: #0E1626;
+  padding: 80px 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.before-after-header {
+  max-width: 600px;
+  margin: 0 auto 48px auto;
+}
+
+.before-after-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.before-after-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+
+/* Slider Frame */
+.before-after-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: 520px;
+  margin: 0 auto;
+  border-radius: var(--radius-hero-img);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  touch-action: none;
+  cursor: ew-resize;
+}
+
+.after-image,
+.before-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Before image clipped dynamically */
+.before-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Divider Handle Line */
+.slider-handle-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--primary-green);
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* Central Circular Drag Button */
+.slider-handle-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--primary-green);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Badges */
+.slider-badge {
+  position: absolute;
+  bottom: 20px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+}
+
+.slider-badge.before {
+  left: 20px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #F8FAFC;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.slider-badge.after {
+  right: 20px;
+  background: var(--primary-green);
+  color: #ffffff;
+}
+
+@media (max-width: 992px) {
+  .before-after-wrapper {
+    height: 400px;
+  }
+
+  .before-after-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .before-after-container {
+    padding: 50px 0;
+  }
+
+  .before-after-wrapper {
+    height: 300px;
+  }
+}

@@ -1,0 +1,154 @@
+/* Pixel-Perfect Reference Rebuild Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 80px 0 20px 0;
+  background: url('../assets/images/ref_hero_team_white_bg.png') center right / cover no-repeat;
+  overflow: hidden;
+}
+
+.hero-ref-container {
+  width: 100%;
+  max-width: var(--container-max-width, 1240px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-ref-content {
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Eyebrow text matching reference */
+.hero-ref-eyebrow {
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+/* Main Headline matching reference wrap & typography */
+.hero-ref-title {
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 3.125rem; /* 50px */
+  font-weight: 800;
+  line-height: 1.15;
+  color: #111111;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+
+/* Paragraph text matching reference */
+.hero-ref-description {
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
+  font-size: 1rem; /* 16px */
+  font-weight: 500;
+  color: #4A5568;
+  line-height: 1.55;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+
+/* Buttons Row matching reference */
+.hero-ref-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Primary Button matching reference green rounded rect */
+.btn-ref-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: #2ECC71;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
+  cursor: pointer;
+}
+
+.btn-ref-primary:hover {
+  background-color: #27AE60;
+  transform: translateY(-1px);
+}
+
+/* Secondary Button matching reference outline style */
+.btn-ref-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #1A1A1A;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid #718096;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-ref-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: #2D3748;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-section {
+    height: auto;
+    min-height: 80vh;
+    max-height: none;
+    background-position: center right 30%;
+  }
+
+  .hero-ref-title {
+    font-size: 2.375rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    min-height: 70vh;
+    max-height: none;
+    padding: calc(var(--header-height, 80px) + 30px) 0 60px 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.88) 100%),
+                url('../assets/images/ref_hero_team_white_bg.png') center right / cover no-repeat;
+  }
+
+  .hero-ref-title {
+    font-size: 2rem;
+  }
+
+  .hero-ref-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ref-actions a,
+  .hero-ref-actions button {
+    width: 100%;
+  }
+}

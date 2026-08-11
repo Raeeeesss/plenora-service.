@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Top Leaf (Dark Emerald Green) -->
+  <path d="M 44 26 C 62 18 78 30 70 48 C 52 56 36 44 44 26 Z" fill="#0D7A57" />
+  <!-- Bottom Leaf (Mint Teal Green) -->
+  <path d="M 62 48 C 80 40 96 52 88 70 C 70 78 54 66 62 48 Z" fill="#3DA37D" />
+</svg>

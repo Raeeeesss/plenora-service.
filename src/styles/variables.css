@@ -1,0 +1,40 @@
+:root {
+  /* Color Palette - Directly extracted from Reference */
+  --primary-green: #0D7A57;
+  --primary-green-hover: #0A6246;
+  --primary-green-light: #E8F6F1;
+  --primary-green-glow: rgba(13, 122, 87, 0.15);
+
+  --secondary-periwinkle: #DDE5FE;
+  --secondary-periwinkle-hover: #CBD9FE;
+  --secondary-periwinkle-text: #2C3E75;
+
+  --dark-stats-bg: #06080A;
+  --process-bg: #F2F6F9;
+  --footer-bg: #F7FAF9;
+  
+  --text-dark: #121820;
+  --text-muted: #5D6A78;
+  --text-light: #8E9AA8;
+  
+  --border-light: #E6ECF1;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 16px 36px rgba(13, 122, 87, 0.08);
+
+  /* Typography - Updated to Inclusive Sans */
+  --font-heading: 'Inclusive Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inclusive Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout & Spacing */
+  --container-max-width: 1240px;
+  --header-height: 80px;
+
+  /* Border Radii */
+  --radius-pill: 9999px;
+  --radius-hero-img: 28px;
+  --radius-card: 20px;
+  --radius-sm: 10px;
+
+  /* Transitions */
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
