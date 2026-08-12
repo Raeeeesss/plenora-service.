@@ -10,7 +10,7 @@
   position: relative;
   width: 100%;
   background-color: #0B42F6; /* Electric Royal Blue */
-  padding-top: 60px;
+  padding-top: 110px;
   padding-bottom: 70px;
   color: #ffffff;
   text-align: center;
@@ -517,6 +517,11 @@
 }
 
 @media (max-width: 640px) {
+  .sdp-hero-section {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
   .sdp-hero-title {
     font-size: 2.5rem;
   }

@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   background-color: #0B42F6; /* Bright Electric/Royal Blue */
-  padding-top: 100px;
+  padding-top: 110px;
   padding-bottom: 0;
   overflow: hidden;
   color: #ffffff;
@@ -586,7 +586,7 @@
 
 @media (max-width: 768px) {
   .hero-section-ref {
-    padding-top: 16px;
+    padding-top: 100px;
     padding-bottom: 50px;
   }
 

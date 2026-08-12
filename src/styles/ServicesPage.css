@@ -10,7 +10,7 @@
   position: relative;
   width: 100%;
   background-color: #0B42F6; /* Bright Electric Royal Blue */
-  padding-top: 50px;
+  padding-top: 110px;
   padding-bottom: 70px;
   color: #ffffff;
   text-align: center;
@@ -465,6 +465,11 @@
 }
 
 @media (max-width: 640px) {
+  .sp-hero-section {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
   .sp-hero-title {
     font-size: 2.75rem;
   }
