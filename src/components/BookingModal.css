@@ -1,0 +1,227 @@
+/* Modal Overlay Backdrop */
+.bm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: bmFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes bmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Card */
+.bm-modal-card {
+  background-color: #FFFDF5;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px;
+  padding: 28px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  position: relative;
+  box-sizing: border-box;
+  animation: bmScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(11, 66, 246, 0.1);
+}
+
+@keyframes bmScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Header */
+.bm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.bm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0B42F6;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.bm-title {
+  font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0F172A;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.bm-close-btn {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bm-close-btn:hover {
+  background-color: #0B42F6;
+  color: #ffffff;
+}
+
+.bm-subtext {
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
+  font-size: 0.875rem;
+  color: #64748B;
+  margin: 0 0 20px 0;
+  line-height: 1.45;
+}
+
+/* Form Styles */
+.bm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bm-form-row {
+  width: 100%;
+}
+
+.bm-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.bm-input-field {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.bm-field-icon {
+  position: absolute;
+  left: 14px;
+  color: #64748B;
+  pointer-events: none;
+}
+
+.bm-top-icon {
+  top: 14px;
+}
+
+.bm-country-code-badge {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0B42F6;
+  background-color: rgba(11, 66, 246, 0.08);
+  padding: 4px 10px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.bm-phone-input-field input {
+  padding-left: 92px !important;
+}
+
+.bm-input-field input,
+.bm-input-field select,
+.bm-input-field textarea {
+  width: 100%;
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  padding: 12px 14px 12px 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #0F172A;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.bm-input-field input:focus,
+.bm-input-field select:focus,
+.bm-input-field textarea:focus {
+  border-color: #0B42F6;
+  box-shadow: 0 0 0 3px rgba(11, 66, 246, 0.12);
+}
+
+.bm-select-field {
+  appearance: none;
+  cursor: pointer;
+}
+
+.bm-submit-row {
+  margin-top: 6px;
+}
+
+.bm-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #25D366; /* WhatsApp Green */
+  color: #ffffff;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+  transition: all 0.2s ease;
+}
+
+.bm-submit-btn:hover {
+  background-color: #1EBE5A;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.4);
+}
+
+@media (max-width: 580px) {
+  .bm-two-col {
+    grid-template-columns: 1fr;
+  }
+  .bm-modal-card {
+    padding: 22px 20px;
+  }
+}

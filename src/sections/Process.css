@@ -1,95 +1,462 @@
-.process-section {
-  padding: 90px 0;
-  background-color: var(--process-bg);
+/* Exact Reference Match Process Section Styles */
+.home-process-section {
+  position: relative;
+  width: 100%;
+  background-color: #FFFDF5; /* Warm Cream Background */
+  padding: 60px 0 0 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Top Organic Cloud Divider */
+.process-top-cloud {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 20;
+  pointer-events: none;
+  line-height: 0;
+}
+
+/* Decorative Line Art Layer around Header */
+.home-process-lineart-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.process-lineart-icon {
+  position: absolute;
+  stroke: #0B42F6;
+}
+
+.lineart-left {
+  top: 50px;
+  left: 5%;
+  width: 100px;
+  height: 100px;
+}
+
+.lineart-right {
+  top: 40px;
+  right: 5%;
+  width: 110px;
+  height: 110px;
+}
+
+/* Container */
+.home-process-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
   text-align: center;
+  position: relative;
+  z-index: 10;
 }
 
-.process-header {
-  max-width: 500px;
-  margin: 0 auto 60px auto;
-  display: flex;
-  flex-direction: column;
+/* Section Badge: ✦ OUR PROCESS ✦ */
+.home-process-badge {
+  display: inline-flex;
   align-items: center;
-}
-
-.process-heading {
-  font-family: var(--font-heading);
-  font-size: 2rem; /* 32px */
+  gap: 8px;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.875rem; /* 14px */
   font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.3;
+  color: #0B42F6;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
-.process-grid {
+.badge-sparkle {
+  color: #0B42F6;
+  font-size: 0.875rem;
+}
+
+/* Main Heading: OUR SIMPLE 4 STEP PROCESS */
+.home-process-title {
+  font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+  font-size: 3.75rem; /* 60px */
+  font-weight: 800;
+  color: #0F172A;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+.process-title-highlight {
+  position: relative;
+  display: inline-block;
+  font-style: italic;
+  font-weight: 800;
+  color: #0F172A;
+  white-space: nowrap;
+}
+
+.process-wavy-svg {
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  pointer-events: none;
+}
+
+/* Subtext Description */
+.home-process-subtext {
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 400;
+  color: #4B5563;
+  max-width: 580px;
+  margin: 0 auto 54px auto;
+  line-height: 1.55;
+}
+
+/* 4 Process Cards Row */
+.home-process-cards-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 24px;
+  margin-bottom: 64px;
+  text-align: center;
   position: relative;
+  box-sizing: border-box;
 }
 
-.process-card {
+.home-process-card-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  position: relative;
 }
 
-/* White Circle Icon Container with Badge Number */
-.process-icon-container {
+/* Curved Dashed Connector Arrow */
+.process-connector-arrow {
+  position: absolute;
+  top: 10px;
+  right: -52px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* Badges Row */
+.process-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
   position: relative;
-  width: 72px;
-  height: 72px;
+  z-index: 10;
+}
+
+.process-number-badge {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  background-color: #0B42F6;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-weight: 800;
+  font-size: 0.9375rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-green);
-  margin-bottom: 24px;
+  box-shadow: 0 4px 10px rgba(11, 66, 246, 0.3);
 }
 
-.process-step-number {
-  position: absolute;
-  top: -6px;
-  left: 2px;
-  font-family: var(--font-heading);
-  font-size: 0.75rem; /* 12px */
-  font-weight: 700;
-  color: var(--text-dark);
+.process-yellow-icon-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #FFCC00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
 }
 
-.process-title {
-  font-family: var(--font-heading);
-  font-size: 1.0625rem; /* 17px */
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 10px;
+/* Process Card Container */
+.home-process-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 28px 20px 24px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-sizing: border-box;
 }
 
-.process-description {
-  font-family: var(--font-body);
+.home-process-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.09);
+}
+
+/* Circular Photo Frame */
+.process-card-circle-img-wrapper {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3.5px solid #0B42F6;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(11, 66, 246, 0.15);
+  flex-shrink: 0;
+}
+
+.process-card-circle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Step Title */
+.process-card-title {
+  font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+  font-size: 1.5rem; /* 24px */
+  font-weight: 800;
+  color: #0F172A;
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+  line-height: 1.15;
+}
+
+/* Step Description */
+.process-card-desc {
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
   font-size: 0.875rem; /* 14px */
-  color: var(--text-muted);
-  line-height: 1.55;
-  max-width: 240px;
+  font-weight: 400;
+  color: #4B5563;
+  line-height: 1.5;
+  margin: 0;
 }
 
-@media (max-width: 992px) {
-  .process-grid {
+/* CTA Banner: Ready for a Cleaner Space? */
+.home-process-cta-banner {
+  background-color: #0B42F6;
+  border-radius: 28px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(11, 66, 246, 0.3);
+  text-align: left;
+}
+
+.cta-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #ffffff;
+}
+
+/* Yellow Floating Badge */
+.cta-badge-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.cta-badge-rotating-text {
+  width: 100px;
+  height: 100px;
+  animation: rotateBadge 20s linear infinite;
+}
+
+.cta-badge-yellow-starburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: #FFCC00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  clip-path: polygon(
+    100% 50%, 93% 63%, 98% 77%, 85% 85%, 
+    83% 99%, 68% 94%, 59% 100%, 46% 96%, 
+    34% 100%, 25% 92%, 11% 94%, 9% 79%, 
+    0% 70%, 5% 56%, 0% 43%, 9% 33%, 
+    8% 18%, 23% 14%, 31% 2%, 45% 6%, 
+    57% 0%, 67% 8%, 81% 4%, 86% 18%, 
+    97% 24%, 94% 38%
+  );
+}
+
+.cta-banner-title {
+  font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+  font-size: 2.25rem; /* 36px */
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.cta-banner-subtext {
+  font-family: var(--font-body, 'Inclusive Sans', sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+  max-width: 440px;
+  line-height: 1.45;
+}
+
+.cta-banner-divider {
+  width: 1px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 0 24px;
+}
+
+.cta-banner-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.cta-btn-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #0B42F6;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-btn-book:hover {
+  background-color: #F3F4F6;
+  transform: translateY(-1px);
+}
+
+.cta-btn-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FFCC00;
+  color: #111827;
+  font-family: var(--font-heading, 'Inclusive Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.3);
+}
+
+.cta-btn-call:hover {
+  background-color: #FFC107;
+  transform: translateY(-1px);
+}
+
+.cta-btn-call-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-banner-sparkle {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: #FFCC00;
+  font-size: 1.5rem;
+}
+
+/* Bottom Cloud Wave Transition */
+.process-bottom-cloud {
+  width: 100%;
+  height: 90px;
+  line-height: 0;
+  background-color: #0B42F6;
+}
+
+.process-cloud-svg {
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1100px) {
+  .home-process-cards-row {
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 32px 24px;
+  }
+
+  .process-connector-arrow {
+    display: none;
+  }
+
+  .home-process-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 32px 28px;
+  }
+
+  .cta-banner-divider {
+    display: none;
   }
 }
 
-@media (max-width: 576px) {
-  .process-section {
-    padding: 60px 0;
+@media (max-width: 640px) {
+  .home-process-title {
+    font-size: 2.75rem;
   }
 
-  .process-grid {
+  .home-process-cards-row {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 28px;
+  }
+
+  .cta-banner-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cta-banner-right {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-btn-book, .cta-btn-call {
+    width: 100%;
+    justify-content: center;
   }
 }
+

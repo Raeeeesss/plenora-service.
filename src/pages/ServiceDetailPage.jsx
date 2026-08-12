@@ -1,33 +1,66 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { CheckCircle2, ChevronDown, ChevronUp, ShieldCheck, Award, Zap } from 'lucide-react';
-import Header from '../components/Header';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { 
+  CheckCircle2, ChevronDown, ChevronUp, ShieldCheck, Award, Leaf, 
+  ArrowRight, Phone, ArrowUpRight, ArrowLeft 
+} from 'lucide-react';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Button from '../components/Button';
 import ServiceCard from '../components/ServiceCard';
-import Process from '../sections/Process';
-import { servicesData } from '../data/servicesData';
+import { useBooking } from '../context/BookingContext';
+import { servicesData, getServiceBySlug } from '../data/servicesData';
 import '../styles/ServiceDetailPage.css';
 
 export default function ServiceDetailPage() {
+  const { openBookingModal } = useBooking();
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(null);
 
-  const service = servicesData[slug];
+  const service = getServiceBySlug(slug);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
 
   if (!service) {
     return (
-      <div className="services-page">
-        <Header />
-        <main className="container not-found-container">
-          <h2>Service Not Found</h2>
-          <p style={{ margin: '16px 0 24px 0', color: 'var(--text-muted)' }}>
-            The requested cleaning service could not be located in our catalog.
-          </p>
-          <Button variant="primary" href="/services">
-            Back to Services
-          </Button>
-        </main>
+      <div className="sdp-page-ref">
+        {/* Not Found Hero Header */}
+        <section className="sdp-hero-section">
+          <Navbar />
+          <div className="sdp-hero-container">
+            <div className="sdp-top-bar">
+              <button onClick={() => navigate('/services')} className="sdp-back-btn">
+                <ArrowLeft size={16} />
+                <span>Back to Services</span>
+              </button>
+            </div>
+            <div className="sdp-hero-badge">
+              <span>SERVICE CATALOG</span>
+            </div>
+            <h1 className="sdp-hero-title">Service Not Found</h1>
+            <p className="sdp-hero-subtext">
+              The requested cleaning service could not be located. Please explore our full catalog below.
+            </p>
+            <div className="sdp-hero-actions" style={{ marginTop: 24 }}>
+              <Link to="/services" className="sdp-btn-primary">
+                <span>View All Services</span>
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+          
+          <div className="sdp-hero-scallop-divider" aria-hidden="true">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="sdp-cloud-svg">
+              <path 
+                d="M 0 90 L 0 45 Q 60 -15, 120 45 Q 185 -10, 250 45 Q 310 -20, 370 45 Q 435 -15, 500 45 Q 565 -25, 630 45 Q 700 -10, 770 45 Q 835 -20, 900 45 Q 965 -15, 1030 45 Q 1100 -25, 1170 45 Q 1235 -10, 1300 45 Q 1370 -20, 1440 45 L 1440 90 Z" 
+                fill="#FFFDF5" 
+              />
+            </svg>
+          </div>
+        </section>
+
         <Footer />
       </div>
     );
@@ -38,119 +71,157 @@ export default function ServiceDetailPage() {
     .filter((s) => s.slug !== service.slug)
     .slice(0, 3);
 
-  const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
   return (
-    <div className="service-detail-page">
-      <Header />
+    <div className="sdp-page-ref">
+      {/* 1. Royal Blue Hero Section (With Top Back Navigation Button) */}
+      <section className="sdp-hero-section">
+        <Navbar />
 
-      {/* Breadcrumb Navigation */}
-      <nav className="breadcrumb-nav">
-        <div className="container">
-          <ul className="breadcrumb-list">
-            <li><Link to="/" className="breadcrumb-link">Home</Link></li>
-            <li className="breadcrumb-separator">/</li>
-            <li><Link to="/services" className="breadcrumb-link">Services</Link></li>
-            <li className="breadcrumb-separator">/</li>
-            <li className="breadcrumb-current">{service.title}</li>
+        {/* Line-art background */}
+        <div className="sdp-lineart-layer" aria-hidden="true">
+          <svg className="sdp-lineart-icon lineart-top-left" viewBox="0 0 100 100">
+            <path d="M35,20 L50,20 L55,30 L30,30 Z M42,30 L42,45 L58,45 L58,90 C58,93 53,95 42,95 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.18"/>
+          </svg>
+          <svg className="sdp-lineart-icon lineart-top-right" viewBox="0 0 120 120">
+            <path d="M20,40 L80,40 L75,90 L25,90 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.18"/>
+          </svg>
+        </div>
+
+        <div className="sdp-hero-container">
+          {/* Top Back Button */}
+          <div className="sdp-top-bar">
+            <button onClick={() => navigate('/services')} className="sdp-back-btn">
+              <ArrowLeft size={16} />
+              <span>Back to Services</span>
+            </button>
+          </div>
+
+          {/* Eyebrow Badge */}
+          <div className="sdp-hero-badge">
+            <span>{service.isAvailable ? service.category.toUpperCase() : 'COMING SOON • CURRENTLY UNAVAILABLE'}</span>
+          </div>
+
+          {/* Main Title */}
+          <h1 className="sdp-hero-title">
+            {service.title}
+          </h1>
+
+          {/* Subtext */}
+          <p className="sdp-hero-subtext">
+            {service.fullDescription}
+          </p>
+
+          {!service.isAvailable && (
+            <div style={{
+              color: '#FF4D4D',
+              fontWeight: 700,
+              fontSize: '1rem',
+              marginTop: 16,
+              marginBottom: 8
+            }}>
+              This service is currently unavailable in Kuttippuram (Coming Soon).
+            </div>
+          )}
+
+          {/* Top Hero Buttons Grouped Cleanly */}
+          <div className="sdp-hero-actions-wrapper">
+            <div className="sdp-hero-actions">
+              {service.isAvailable ? (
+                <button onClick={() => openBookingModal(service.title)} className="sdp-btn-primary" style={{ border: 'none', cursor: 'pointer' }}>
+                  <span>Book This Service</span>
+                  <ArrowRight size={16} />
+                </button>
+              ) : (
+                <button onClick={() => openBookingModal(service.title)} className="sdp-btn-primary" style={{ border: 'none', cursor: 'pointer' }}>
+                  <span>Contact Us</span>
+                  <ArrowRight size={16} />
+                </button>
+              )}
+              <a href="tel:+918139895446" className="sdp-btn-secondary">
+                <Phone size={15} fill="#111827" color="#111827" />
+                <span>Call for Details</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Scallop Divider into Cream Canvas */}
+        <div className="sdp-hero-scallop-divider" aria-hidden="true">
+          <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="sdp-cloud-svg">
+            <path 
+              d="M 0 90 L 0 45 Q 60 -15, 120 45 Q 185 -10, 250 45 Q 310 -20, 370 45 Q 435 -15, 500 45 Q 565 -25, 630 45 Q 700 -10, 770 45 Q 835 -20, 900 45 Q 965 -15, 1030 45 Q 1100 -25, 1170 45 Q 1235 -10, 1300 45 Q 1370 -20, 1440 45 L 1440 90 Z" 
+              fill="#FFFDF5" 
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* 2. Breadcrumb Navigation */}
+      <div className="sdp-breadcrumb-bar">
+        <div className="sdp-main-container">
+          <ul className="sdp-breadcrumb-list">
+            <li><Link to="/">Home</Link></li>
+            <li className="sdp-sep">/</li>
+            <li><Link to="/services">Services</Link></li>
+            <li className="sdp-sep">/</li>
+            <li className="sdp-active">{service.title}</li>
           </ul>
         </div>
-      </nav>
+      </div>
 
-      <main>
-        {/* Service Hero */}
-        <section className="detail-hero-section">
-          <div className="container detail-hero-container">
-            <div className="hero-content">
-              <div className="section-badge">{service.category.toUpperCase()}</div>
-              
-              <h1 className="hero-title">{service.title}</h1>
-              
-              <p className="hero-description">{service.fullDescription}</p>
-
-              <div className="detail-price-badge">
-                Starting {service.price}
-              </div>
-
-              <div className="hero-actions">
-                <Button variant="primary" href="#book">
-                  Book This Service
-                </Button>
-                <Button variant="secondary" href="#quote">
-                  Get a Free Quote
-                </Button>
-              </div>
+      {/* 3. Main Content Sections */}
+      <main className="sdp-main-canvas">
+        <div className="sdp-main-container">
+          
+          {/* Service Image & Scope Overview */}
+          <div className="sdp-overview-grid">
+            <div className="sdp-image-card">
+              <img src={service.heroImage} alt={service.title} className="sdp-hero-img" />
             </div>
 
-            <div className="hero-image-wrapper">
-              <img src={service.heroImage} alt={service.title} className="hero-image" />
+            <div className="sdp-scope-card">
+              <h2 className="sdp-section-title">
+                What's Included
+                <span className="sdp-title-underline"></span>
+              </h2>
+              <p className="sdp-scope-desc">
+                Our hospitality-trained professionals deliver a comprehensive cleaning scope with zero compromise on surface safety.
+              </p>
+
+              <div className="sdp-checklist-grid">
+                {service.whatsIncluded.map((item, index) => (
+                  <div key={index} className="sdp-checklist-item">
+                    <div className="sdp-check-icon-badge">
+                      <CheckCircle2 size={16} color="#FFFFFF" />
+                    </div>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
 
-        {/* What's Included */}
-        <section className="included-section">
-          <div className="container">
-            <div className="included-header">
-              <div className="section-badge">SERVICE SCOPE</div>
-              <h2 className="section-heading">What's Included in {service.title}</h2>
-            </div>
 
-            <div className="included-grid">
-              {service.whatsIncluded.map((item, index) => (
-                <div key={index} className="included-item">
-                  <CheckCircle2 size={20} className="included-icon" />
-                  <span className="included-text">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Key Features */}
-        <section className="features-section">
-          <div className="container">
-            <div className="services-header" style={{ marginBottom: 40 }}>
-              <div>
-                <div className="section-badge">WHY CHOOSE PLENORA</div>
-                <h2 className="section-heading">Engineered for perfection</h2>
-              </div>
-            </div>
 
-            <div className="features-grid">
-              {service.features.map((feat, index) => (
-                <div key={index} className="feature-card">
-                  <h3 className="feature-card-title">{feat.title}</h3>
-                  <p className="feature-card-desc">{feat.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* 4-Step Process */}
-        <Process />
+          {/* FAQ Accordion Section */}
+          {service.faqs && service.faqs.length > 0 && (
+            <div className="sdp-faq-block">
+              <h2 className="sdp-section-title text-center">
+                Frequently Asked Questions
+                <span className="sdp-title-underline center"></span>
+              </h2>
 
-        {/* FAQ Accordion */}
-        {service.faqs && service.faqs.length > 0 && (
-          <section className="faq-section">
-            <div className="container faq-container">
-              <div className="process-header">
-                <div className="section-badge">GOT QUESTIONS?</div>
-                <h2 className="process-heading">Frequently Asked Questions</h2>
-              </div>
-
-              <div className="faq-list">
+              <div className="sdp-faq-list">
                 {service.faqs.map((faq, index) => (
-                  <div key={index} className="faq-item">
-                    <button className="faq-question-btn" onClick={() => toggleFaq(index)}>
+                  <div key={index} className={`sdp-faq-item ${openFaq === index ? 'active' : ''}`}>
+                    <button className="sdp-faq-question-btn" onClick={() => toggleFaq(index)}>
                       <span>{faq.question}</span>
-                      {openFaq === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                      {openFaq === index ? <ChevronUp size={20} color="#0B42F6" /> : <ChevronDown size={20} color="#64748B" />}
                     </button>
                     {openFaq === index && (
-                      <div className="faq-answer">
+                      <div className="sdp-faq-answer">
                         <p>{faq.answer}</p>
                       </div>
                     )}
@@ -158,23 +229,22 @@ export default function ServiceDetailPage() {
                 ))}
               </div>
             </div>
-          </section>
-        )}
+          )}
 
-        {/* Related Services */}
-        <section className="services-section" style={{ backgroundColor: '#F8FAFC' }}>
-          <div className="container">
-            <div className="services-header">
-              <div>
-                <div className="section-badge">EXPLORE MORE</div>
-                <h2 className="section-heading">Related Cleaning Services</h2>
-              </div>
-              <Button variant="secondary" href="/services">
-                View All Services
-              </Button>
+          {/* Related Cleaning Services */}
+          <div className="sdp-related-block">
+            <div className="sdp-related-header">
+              <h2 className="sdp-section-title">
+                Explore More Services
+                <span className="sdp-title-underline"></span>
+              </h2>
+              <Link to="/services" className="sdp-view-all-link">
+                <span>View All Services</span>
+                <ArrowRight size={16} />
+              </Link>
             </div>
 
-            <div className="services-grid">
+            <div className="sdp-related-grid">
               {relatedServices.map((rel) => (
                 <ServiceCard
                   key={rel.slug}
@@ -189,23 +259,13 @@ export default function ServiceDetailPage() {
               ))}
             </div>
           </div>
-        </section>
 
-        {/* Final CTA */}
-        <section className="ready-cta-section">
-          <div className="container ready-cta-container">
-            <h2 className="ready-cta-title">Ready for a cleaner space?</h2>
-            <p className="ready-cta-subtitle">
-              Book your {service.title} today and experience the Plenora standard of hospitality care.
-            </p>
-            <Button variant="primary" href="#book">
-              Book Now
-            </Button>
-          </div>
-        </section>
+        </div>
       </main>
 
       <Footer />
     </div>
   );
 }
+
+

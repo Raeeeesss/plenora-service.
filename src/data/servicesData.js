@@ -14,6 +14,7 @@ export const servicesData = {
     slug: 'house-office-deep-cleaning',
     title: 'House & Office Deep Cleaning',
     category: 'Home & Office',
+    isAvailable: false,
     price: 'From ₹1,499',
     shortDescription: 'Comprehensive, top-to-bottom sanitization and detailing for residential and commercial spaces.',
     fullDescription: 'Transform your living or working environment with Plenora’s hospital-grade deep cleaning. Our trained specialists inspect every nook, removing dust, hidden allergens, and stubborn grime from high ceilings down to floor baseboards.',
@@ -39,8 +40,9 @@ export const servicesData = {
 
   'vehicle-foam-washing': {
     slug: 'vehicle-foam-washing',
-    title: 'Vehicle Foam Washing & Detailing',
+    title: 'Vehicle Detailing',
     category: 'Vehicle',
+    isAvailable: true,
     price: 'From ₹499',
     shortDescription: 'Premium touchless foam wash and interior detailing for cars and commercial fleets, ensuring a showroom shine.',
     fullDescription: 'Give your luxury automobile or commercial fleet the care it deserves. Plenora uses high-pH neutral snow foam, pressure rinse, tire dressing, and deep cabin vacuuming to maintain paint integrity and interior freshness.',
@@ -266,3 +268,25 @@ export const servicesData = {
     ]
   }
 };
+
+// Map of slug aliases to ensure no broken or legacy URLs throw "Service Not Found"
+export const slugAliases = {
+  'vehicle-detailing': 'vehicle-foam-washing',
+  'bathroom-sanitization-cleaning': 'bathroom-deep-cleaning',
+  'bathroom-cleaning': 'bathroom-deep-cleaning',
+  'interlock-cleaning-restoration': 'interlock-cleaning',
+  'water-tank-cleaning-disinfection': 'tank-cleaning',
+  'tank-cleaning-disinfection': 'tank-cleaning',
+  'acp-glass-pressure-cleaning': 'acp-glass-cleaning',
+  'vehicle-foam-washing-detailing': 'vehicle-foam-washing',
+  'house-office-deep-cleaning-sanitization': 'house-office-deep-cleaning',
+  'garden-landscaping-care-maintenance': 'garden-landscaping-care'
+};
+
+export const getServiceBySlug = (slug) => {
+  if (!slug) return null;
+  const canonicalSlug = slugAliases[slug] || slug;
+  return servicesData[canonicalSlug] || null;
+};
+
+

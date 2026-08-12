@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Award, Heart, Leaf, CheckCircle2 } from 'lucide-react';
-import Header from '../components/Header';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Stats from '../sections/Stats';
@@ -66,7 +66,7 @@ export default function AboutPage() {
 
   return (
     <div className="about-page">
-      <Header />
+      <Navbar />
 
       <main>
         {/* About Hero Banner */}

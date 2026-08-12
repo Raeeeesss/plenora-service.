@@ -12,8 +12,10 @@ export default function Header() {
 
   const isHome = location.pathname === '/';
   const isServices = location.pathname.startsWith('/services');
-  const isWhyUs = location.pathname === '/why-us';
+  const isWhyUs = location.pathname === '/why-us' || location.pathname === '/why-plenora';
   const isContact = location.pathname === '/contact';
+
+  if (isHome) return null;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +52,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/why-us" className={`nav-link ${isWhyUs ? 'active' : ''}`}>
+              <Link to="/why-plenora" className={`nav-link ${isWhyUs ? 'active' : ''}`}>
                 Why Plenora
               </Link>
             </li>

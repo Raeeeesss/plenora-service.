@@ -1,257 +1,232 @@
 import React from 'react';
-import { CheckCircle2, Check, X, Star } from 'lucide-react';
-import Header from '../components/Header';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Phone, ArrowUpRight, Star, ShieldCheck, Clock, Award, Leaf, Users, MessageSquare, ThumbsUp, Calendar, MapPin, Smile } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import logoImg from '../assets/logo.png';
+import cleanersCreamBgImg from '../assets/images/under_hero_cleaners_creambg.png';
 import Footer from '../components/Footer';
-import Button from '../components/Button';
-import Stats from '../sections/Stats';
 
-import hospitalityImg from '../assets/images/why_hospitality.png';
-import specialistsImg from '../assets/images/why_specialists.png';
-import ecoImg from '../assets/images/why_eco.png';
-import equipmentImg from '../assets/images/why_equipment.png';
-import vehicleImg from '../assets/images/service_vehicle_detailing.png';
-import gardeningImg from '../assets/images/service_gardening_care.png';
+import avatar1 from '../assets/images/hero_clean_action1.png';
+import avatar2 from '../assets/images/ref_hero_right_card.png';
+import avatar3 from '../assets/images/under_hero_cleaners_creambg.png';
 
 import '../styles/WhyPlenoraPage.css';
 
 export default function WhyPlenoraPage() {
-  const showcaseRows = [
-    {
-      step: '01 / HOSPITALITY STANDARDS',
-      title: '5-Star Hospitality Protocols For Every Space',
-      description: 'Our techniques are derived directly from luxury 5-star hotel housekeeping standards. We inspect every corner, window frame, and delicate surface, ensuring a pristine hospitality-grade clean that elevates your environment.',
-      image: hospitalityImg,
-      alt: 'Luxury 5-Star Hospitality Suite Cleaning',
-      checklist: [
-        'Deep stain extraction & optical glass polishing',
-        'Hospital-grade surface sanitization',
-        'Zero scratch guarantee on brass, marble & chrome'
-      ],
-      reverse: false
-    },
-    {
-      step: '02 / VETTED SPECIALISTS',
-      title: 'Background-Checked, Uniformed & Insured Crew',
-      description: 'Your security and peace of mind are non-negotiable. Every Plenora technician undergoes rigorous background checks, extensive technical training, and arrives in full uniform with comprehensive commercial safety insurance.',
-      image: specialistsImg,
-      alt: 'Plenora Uniformed Specialist Cleaning Team',
-      checklist: [
-        '100% Background-verified personnel',
-        'Comprehensive commercial liability coverage',
-        'Equipped with specialized heavy-duty tools'
-      ],
-      reverse: true
-    },
-    {
-      step: '03 / ECO-SAFE FORMULATIONS',
-      title: 'Child-Safe, Pet-Friendly & Zero-Residue Solvents',
-      description: 'We believe cleanliness should never compromise health. Our non-toxic, pH-balanced disinfectants eliminate 99.9% of bacteria and allergens without harsh fumes or corrosive chemical residues.',
-      image: ecoImg,
-      alt: 'Eco-Friendly Non-Toxic Cleaning Products',
-      checklist: [
-        'Biodegradable plant-based solvents',
-        'Safe for children, pets & allergy sufferers',
-        'Preserves delicate stone, wood & leather finishes'
-      ],
-      reverse: false
-    },
-    {
-      step: '04 / ADVANCED MACHINERY',
-      title: 'State-of-the-Art Heavy Duty Equipment',
-      description: 'From de-ionized solar water poles and rotary interlock pressure washers to commercial hot-water extraction units, we invest in cutting-edge machinery to deliver superior speed and thoroughness.',
-      image: equipmentImg,
-      alt: 'Commercial Floor Polishing & Steam Equipment',
-      checklist: [
-        'Rotary high-pressure jet technology',
-        'Zero-TDS purified water systems',
-        'Deep extraction hot-water steam units'
-      ],
-      reverse: true
-    },
-    {
-      step: '05 / CAR WASHING & DETAILING',
-      title: 'Doorstep Vehicle Foam Wash & Interior Steam Care',
-      description: 'We bring specialized mobile pressure snow foam, leather trim conditioning, and trunk vacuuming directly to your home garage or corporate fleet parking.',
-      image: vehicleImg,
-      alt: 'Luxury Vehicle Foam Wash Detailing',
-      checklist: [
-        'pH-Neutral scratch-free snow foam pre-wash',
-        'Deep interior vacuuming & leather conditioning',
-        'Hydrophobic glass sealant & alloy wheel scrubbing'
-      ],
-      reverse: false
-    },
-    {
-      step: '06 / GARDEN & LANDSCAPING CARE',
-      title: 'Precision Lawn Mowing, Hedge Pruning & Yard Care',
-      description: 'Maintain lush, thriving green outdoor spaces with Plenora’s dedicated horticulture team. We provide lawn edging, shrub shaping, weed removal, and organic soil fertilization.',
-      image: gardeningImg,
-      alt: 'Professional Lawn Mowing and Garden Care',
-      checklist: [
-        'Precision cordless lawn mowing & edge detailing',
-        'Organic plant nutrient & eco fertilizer treatment',
-        'Complete weed eradication & garden waste disposal'
-      ],
-      reverse: true
-    }
-  ];
-
-  const comparisonData = [
-    { feature: 'Hospitality-Trained Cleaning Crew', plenora: true, others: false },
-    { feature: 'Doorstep Car Foam Washing & Fleet Detailing', plenora: true, others: false },
-    { feature: 'Garden Maintenance & Outdoor Landscaping Care', plenora: true, others: false },
-    { feature: 'Mechanized Heavy-Duty Steam Extraction', plenora: true, others: false },
-    { feature: 'pH-Balanced Acid-Free Cleaners', plenora: true, others: false },
-    { feature: 'Comprehensive Property Insurance', plenora: true, others: false },
-    { feature: '100% Satisfaction Re-Clean Guarantee', plenora: true, others: false },
-    { feature: 'Transparent Upfront Estimates', plenora: true, others: 'Unpredictable' }
-  ];
-
-  const testimonials = [
-    {
-      quote: "Plenora transformed our marble flooring and sofa upholstery after our home renovation. The team was punctual, courteous, and incredibly thorough.",
-      author: "Vikram R.",
-      role: "Luxury Villa Owner"
-    },
-    {
-      quote: "As a corporate fleet manager, our vehicles require immaculate presentation daily. Plenora's foam detailing is second to none.",
-      author: "Ananya M.",
-      role: "Corporate Operations Director"
-    },
-    {
-      quote: "Their bathroom deep clean removed years of stubborn hard water scaling from our glass partition without a single scratch. Highly recommended!",
-      author: "Siddharth K.",
-      role: "Apartment Resident"
-    }
-  ];
-
   return (
-    <div className="why-plenora-page">
-      <Header />
-
+    <div className="why-plenora-page-ref">
       <main>
-        {/* Header Banner */}
-        <section className="why-header-banner">
-          <div className="container why-header-container">
-            <div className="section-badge">WHY PLENORA</div>
-            
-            <h1 className="why-header-title">
-              The Standard of Excellence for <span className="highlight">Premium Spaces</span>
+        {/* 1. Royal Blue Hero Section */}
+        <section className="wp-hero-section">
+          {/* Floating Top Navigation Pill */}
+          <Navbar />
+
+          {/* Decorative Vector Line Art Layer */}
+          <div className="wp-lineart-layer" aria-hidden="true">
+            <svg className="wp-lineart-icon lineart-top-left" viewBox="0 0 100 100">
+              <path d="M35,20 L50,20 L55,30 L30,30 Z M42,30 L42,45 L58,45 L58,90 C58,93 53,95 42,95 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.18"/>
+            </svg>
+            <svg className="wp-lineart-icon lineart-top-right" viewBox="0 0 120 120">
+              <path d="M20,40 L80,40 L75,90 L25,90 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.18"/>
+            </svg>
+          </div>
+
+          <div className="wp-hero-container">
+            {/* Badge */}
+            <div className="wp-hero-badge">
+              <span>WHY PLENORA</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="wp-hero-title">
+              Why Choose<br />
+              Plenora <span className="wp-title-highlight">Service?
+                <svg className="wp-wavy-svg" viewBox="0 0 240 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M 3 10 C 20 2, 35 16, 55 9 C 75 2, 90 16, 110 9 C 130 2, 145 16, 165 9 C 185 2, 200 16, 237 9" stroke="#FFCC00" strokeWidth="4.5" strokeLinecap="round" />
+                </svg>
+              </span>
             </h1>
 
-            <p className="why-header-subtitle">
-              Discover how Plenora combines 5-star hotel protocols, vetted specialists, doorstep car washing, and garden maintenance to deliver uncompromised care.
+            {/* Subtext */}
+            <p className="wp-hero-subtext">
+              We go beyond just cleaning. We deliver trust, quality, and a spotless experience every single time.
             </p>
           </div>
+
+          {/* Bottom Cloud Divider into Cream Canvas */}
+          <div className="wp-hero-scallop-divider" aria-hidden="true">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="wp-cloud-svg">
+              <path 
+                d="M 0 90 L 0 45 Q 60 -15, 120 45 Q 185 -10, 250 45 Q 310 -20, 370 45 Q 435 -15, 500 45 Q 565 -25, 630 45 Q 700 -10, 770 45 Q 835 -20, 900 45 Q 965 -15, 1030 45 Q 1100 -25, 1170 45 Q 1235 -10, 1300 45 Q 1370 -20, 1440 45 L 1440 90 Z" 
+                fill="#FFFDF5" 
+              />
+            </svg>
+          </div>
         </section>
 
-        {/* Line-by-Line Visual Showcase */}
-        <section className="line-showcase-section">
-          <div className="container">
-            <div className="line-showcase-list">
-              {showcaseRows.map((row, index) => (
-                <div key={index} className={`line-row ${row.reverse ? 'reverse' : ''}`}>
-                  <div className="line-image-wrapper">
-                    <img src={row.image} alt={row.alt} className="line-image" />
+        {/* 2. Main Why Plenora Section (Warm Cream Background #FFFDF5) */}
+        <section className="wp-main-section">
+          <div className="wp-main-container">
+            
+            {/* Center Cleaners Photo & 4 Key Pillars Layout */}
+            <div className="wp-pillars-composition">
+              {/* Left Column Pillars */}
+              <div className="wp-pillar-column wp-left-col">
+                <div className="wp-pillar-item">
+                  <div className="wp-pillar-icon-wrapper">
+                    <ShieldCheck size={32} color="#0B42F6" />
                   </div>
+                  <h3 className="wp-pillar-title">
+                    Trusted &amp; Insured
+                    <span className="wp-pillar-underline"></span>
+                  </h3>
+                  <p className="wp-pillar-desc">
+                    Your property is protected with full insurance coverage for complete peace of mind.
+                  </p>
+                </div>
 
-                  <div className="line-content">
-                    <div className="line-step-number">{row.step}</div>
-                    <h2 className="line-title">{row.title}</h2>
-                    <p className="line-description">{row.description}</p>
+                <div className="wp-pillar-item">
+                  <div className="wp-pillar-icon-wrapper">
+                    <Clock size={32} color="#0B42F6" />
+                  </div>
+                  <h3 className="wp-pillar-title">
+                    On-Time, Every Time
+                    <span className="wp-pillar-underline"></span>
+                  </h3>
+                  <p className="wp-pillar-desc">
+                    We respect your time and always arrive on schedule, ready to deliver the best.
+                  </p>
+                </div>
+              </div>
 
-                    <ul className="line-checklist">
-                      {row.checklist.map((item, idx) => (
-                        <li key={idx} className="line-checklist-item">
-                          <CheckCircle2 size={18} className="line-check-icon" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+              {/* Center Column: Cleaners Photo with Waist Scallop Overlay */}
+              <div className="wp-center-col">
+                <div className="wp-cleaner-wrapper">
+                  <img 
+                    src={cleanersCreamBgImg} 
+                    alt="Plenora Professional Cleaners" 
+                    className="wp-cleaner-img" 
+                  />
+                  {/* Cream Cloud Overlay at Waist */}
+                  <div className="wp-cleaner-scallop" aria-hidden="true">
+                    <svg viewBox="0 0 400 45" preserveAspectRatio="none" className="wp-waist-cloud-svg">
+                      <path 
+                        d="M 0 45 L 0 25 Q 20 0, 40 25 Q 60 -5, 80 25 Q 100 5, 120 25 Q 140 -5, 160 25 Q 180 5, 200 25 Q 220 -5, 240 25 Q 260 5, 280 25 Q 300 -5, 320 25 Q 340 5, 360 25 Q 380 0, 400 25 L 400 45 Z" 
+                        fill="#FFFDF5" 
+                      />
+                    </svg>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
 
-        {/* Performance Metrics Stats Bar */}
-        <Stats />
-
-        {/* Comparison Matrix Table */}
-        <section className="comparison-section">
-          <div className="container">
-            <div className="process-header" style={{ marginBottom: 50 }}>
-              <div className="section-badge">THE COMPARISON</div>
-              <h2 className="process-heading">How Plenora compares to standard cleaners</h2>
-            </div>
-
-            <div className="comparison-table-wrapper">
-              <table className="comparison-table">
-                <thead>
-                  <tr>
-                    <th>Service Standard</th>
-                    <th className="plenora-col">Plenora Service</th>
-                    <th>Standard Local Cleaners</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonData.map((row, index) => (
-                    <tr key={index}>
-                      <td className="feature-name">{row.feature}</td>
-                      <td className="plenora-cell">
-                        {row.plenora === true ? <Check className="check-icon" size={20} /> : row.plenora}
-                      </td>
-                      <td className="others-cell">
-                        {row.others === false ? <X className="cross-icon" size={20} /> : row.others}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="testimonials-section">
-          <div className="container">
-            <div className="process-header" style={{ marginBottom: 50 }}>
-              <div className="section-badge">CLIENT REVIEWS</div>
-              <h2 className="process-heading">Trusted by homeowners and executives</h2>
-            </div>
-
-            <div className="testimonials-grid">
-              {testimonials.map((t, index) => (
-                <div key={index} className="testimonial-card">
-                  <div>
-                    <div className="testimonial-stars">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={16} fill="#F59E0B" color="#F59E0B" />
-                      ))}
-                    </div>
-                    <p className="testimonial-quote">"{t.quote}"</p>
+              {/* Right Column Pillars */}
+              <div className="wp-pillar-column wp-right-col">
+                <div className="wp-pillar-item">
+                  <div className="wp-pillar-icon-wrapper">
+                    <Award size={32} color="#0B42F6" />
                   </div>
-                  <div>
-                    <div className="testimonial-author">{t.author}</div>
-                    <div className="testimonial-role">{t.role}</div>
-                  </div>
+                  <h3 className="wp-pillar-title">
+                    Quality You Can See
+                    <span className="wp-pillar-underline"></span>
+                  </h3>
+                  <p className="wp-pillar-desc">
+                    We follow a detailed cleaning process to ensure exceptional results every time.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Final CTA */}
-        <section className="ready-cta-section">
-          <div className="container ready-cta-container">
-            <h2 className="ready-cta-title">Elevate your space today</h2>
-            <p className="ready-cta-subtitle">
-              Join hundreds of satisfied clients who trust Plenora for hospitality-grade cleanliness.
-            </p>
-            <Button variant="primary" href="#quote">
-              Get Your Free Estimate
-            </Button>
+                <div className="wp-pillar-item">
+                  <div className="wp-pillar-icon-wrapper">
+                    <Leaf size={32} color="#0B42F6" />
+                  </div>
+                  <h3 className="wp-pillar-title">
+                    Safe &amp; Eco-Friendly
+                    <span className="wp-pillar-underline"></span>
+                  </h3>
+                  <p className="wp-pillar-desc">
+                    We use eco-friendly products that are safe for your family, pets, and the environment.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 4 Value Cards Grid */}
+            <div className="wp-value-cards-grid">
+              <div className="wp-value-card">
+                <div className="wp-value-icon-wrapper">
+                  <Users size={28} color="#0B42F6" />
+                </div>
+                <h3 className="wp-value-title">Trained Professionals</h3>
+                <p className="wp-value-desc">Our team is trained, verified, and passionate about delivering excellent service.</p>
+              </div>
+
+              <div className="wp-value-card">
+                <div className="wp-value-icon-wrapper">
+                  <MessageSquare size={28} color="#0B42F6" />
+                </div>
+                <h3 className="wp-value-title">Customer First</h3>
+                <p className="wp-value-desc">Your satisfaction is our priority. We listen, we care, and we make it right.</p>
+              </div>
+
+              <div className="wp-value-card">
+                <div className="wp-value-icon-wrapper">
+                  <ThumbsUp size={28} color="#0B42F6" />
+                </div>
+                <h3 className="wp-value-title">Satisfaction Guarantee</h3>
+                <p className="wp-value-desc">Not happy with the service? We'll come back and make it right.</p>
+              </div>
+
+              <div className="wp-value-card">
+                <div className="wp-value-icon-wrapper">
+                  <Calendar size={28} color="#0B42F6" />
+                </div>
+                <h3 className="wp-value-title">Flexible Booking</h3>
+                <p className="wp-value-desc">Book at your convenience with same-day &amp; advance scheduling.</p>
+              </div>
+            </div>
+
+            {/* Counter / Stats Bar */}
+            <div className="wp-stats-bar">
+              <div className="wp-stat-item">
+                <div className="wp-stat-icon-wrapper">
+                  <Star size={24} color="#0B42F6" />
+                </div>
+                <div className="wp-stat-text-group">
+                  <span className="wp-stat-number">5000+</span>
+                  <span className="wp-stat-label">Happy Customers</span>
+                </div>
+              </div>
+
+              <div className="wp-stat-item">
+                <div className="wp-stat-icon-wrapper">
+                  <Calendar size={24} color="#0B42F6" />
+                </div>
+                <div className="wp-stat-text-group">
+                  <span className="wp-stat-number">10000+</span>
+                  <span className="wp-stat-label">Cleanings Completed</span>
+                </div>
+              </div>
+
+              <div className="wp-stat-item">
+                <div className="wp-stat-icon-wrapper">
+                  <MapPin size={24} color="#0B42F6" />
+                </div>
+                <div className="wp-stat-text-group">
+                  <span className="wp-stat-number">15+</span>
+                  <span className="wp-stat-label">Areas We Serve</span>
+                </div>
+              </div>
+
+              <div className="wp-stat-item">
+                <div className="wp-stat-icon-wrapper">
+                  <Smile size={24} color="#0B42F6" />
+                </div>
+                <div className="wp-stat-text-group">
+                  <span className="wp-stat-number">4.7★</span>
+                  <span className="wp-stat-label">Average Rating</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
       </main>
@@ -260,3 +235,4 @@ export default function WhyPlenoraPage() {
     </div>
   );
 }
+

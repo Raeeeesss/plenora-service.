@@ -4,7 +4,8 @@ import { ArrowUpRight } from 'lucide-react';
 import './ServiceCard.css';
 
 export default function ServiceCard({ slug, title, category, description, price, image, alt }) {
-  const detailUrl = slug ? `/services/${slug}` : '#services';
+  const isAvailable = slug === 'vehicle-foam-washing' || slug === 'vehicle-detailing';
+  const detailUrl = slug ? `/services/${slug}` : '/services';
 
   return (
     <Link to={detailUrl} className="service-card-link">
@@ -17,20 +18,25 @@ export default function ServiceCard({ slug, title, category, description, price,
         <div className="service-card-content">
           <div className="service-card-header">
             <h3 className="service-card-title">{title}</h3>
-            <div className="service-card-arrow-btn">
-              <ArrowUpRight size={18} />
-            </div>
+            {isAvailable && (
+              <div className="service-card-arrow-btn">
+                <ArrowUpRight size={18} />
+              </div>
+            )}
           </div>
 
           <p className="service-card-description">{description}</p>
 
           <div className="service-card-footer">
-            <div className="service-card-price">
-              <span className="amount">{price}</span>
-            </div>
-            <span className="service-view-link">
-              VIEW SERVICE →
-            </span>
+            {isAvailable ? (
+              <span className="service-view-link">
+                VIEW SERVICE →
+              </span>
+            ) : (
+              <span className="service-view-link" style={{ color: '#94A3B8', fontWeight: 700 }}>
+                Coming Soon
+              </span>
+            )}
           </div>
         </div>
       </div>
