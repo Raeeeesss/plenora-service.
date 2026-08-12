@@ -107,7 +107,7 @@ export default function Stats() {
       <div className="under-hero-bottom-scallop" aria-hidden="true">
         <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="under-hero-cloud-svg">
           <path 
-            d="M 0 0 L 0 45 Q 60 105, 120 45 Q 185 100, 250 45 Q 310 110, 370 45 Q 435 105, 500 45 Q 565 115, 630 45 Q 700 100, 770 45 Q 835 110, 900 45 Q 965 105, 1030 45 Q 1100 115, 1170 45 Q 1235 100, 1300 45 Q 1370 110, 1440 45 L 1440 0 Z" 
+            d="M 0 0 L 0 45 Q 144 85, 288 45 Q 432 75, 576 45 Q 720 90, 864 45 Q 1008 75, 1152 45 Q 1296 85, 1440 45 L 1440 0 Z" 
             fill="#FFFDF5" 
           />
         </svg>

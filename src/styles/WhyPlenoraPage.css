@@ -11,7 +11,7 @@
   width: 100%;
   background-color: #0B42F6; /* Electric Royal Blue */
   padding-top: 110px;
-  padding-bottom: 70px;
+  padding-bottom: 90px;
   color: #ffffff;
   text-align: center;
   overflow: hidden;
@@ -151,7 +151,7 @@
   font-weight: 400;
   color: rgba(255, 255, 255, 0.92);
   max-width: 580px;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
   line-height: 1.55;
 }
 
@@ -447,7 +447,11 @@
 @media (max-width: 640px) {
   .wp-hero-section {
     padding-top: 100px;
-    padding-bottom: 50px;
+    padding-bottom: 75px;
+  }
+
+  .wp-hero-subtext {
+    margin-bottom: 30px;
   }
 
   .wp-hero-title {

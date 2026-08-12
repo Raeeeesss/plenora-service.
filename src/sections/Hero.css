@@ -629,7 +629,7 @@
   .sp-hero-scallop-divider,
   .wp-hero-scallop-divider,
   .cp-hero-scallop-divider {
-    height: 45px;
+    height: 55px;
   }
 
   .hero-cloud-svg,
@@ -637,7 +637,7 @@
   .sp-cloud-svg,
   .wp-cloud-svg,
   .cp-cloud-svg {
-    height: 45px;
+    height: 55px;
   }
 }
 

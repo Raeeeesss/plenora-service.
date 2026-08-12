@@ -11,7 +11,7 @@
   width: 100%;
   background-color: #0B42F6; /* Electric Royal Blue */
   padding-top: 110px;
-  padding-bottom: 70px;
+  padding-bottom: 90px;
   color: #ffffff;
   text-align: center;
   overflow: hidden;
@@ -127,6 +127,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  margin-bottom: 40px;
 }
 
 .sdp-hero-pricing-bar {
@@ -519,7 +520,11 @@
 @media (max-width: 640px) {
   .sdp-hero-section {
     padding-top: 100px;
-    padding-bottom: 50px;
+    padding-bottom: 75px;
+  }
+
+  .sdp-hero-actions-wrapper {
+    margin-bottom: 30px;
   }
 
   .sdp-hero-title {

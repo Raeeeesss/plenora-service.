@@ -60,7 +60,7 @@ export default function Footer() {
       <div className="footer-cloud-divider" aria-hidden="true">
         <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="footer-cloud-svg">
           <path 
-            d="M 0 90 L 0 45 Q 60 -15, 120 45 Q 185 -10, 250 45 Q 310 -20, 370 45 Q 435 -15, 500 45 Q 565 -25, 630 45 Q 700 -10, 770 45 Q 835 -20, 900 45 Q 965 -15, 1030 45 Q 1100 -25, 1170 45 Q 1235 -10, 1300 45 Q 1370 -20, 1440 45 L 1440 90 Z" 
+            d="M 0 90 L 0 45 Q 144 5, 288 45 Q 432 15, 576 45 Q 720 0, 864 45 Q 1008 15, 1152 45 Q 1296 5, 1440 45 L 1440 90 Z" 
             fill="#0B42F6" 
           />
         </svg>
