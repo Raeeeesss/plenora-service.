@@ -98,9 +98,6 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
           </button>
 
           <div className="bm-header-content">
-            <div className="bm-badge">
-              <span>QUICK BOOKING</span>
-            </div>
             <h3 className="bm-title">
               Book A Service
               <svg className="bm-wavy-svg" viewBox="0 0 160 16" fill="none">
