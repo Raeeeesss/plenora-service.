@@ -1,73 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import deepCleaningImg from '../assets/images/service_deep_cleaning.png';
-import vehicleWashImg from '../assets/images/service_vehicle_detailing.png';
-import bathroomImg from '../assets/images/service_bathroom_sanitization.png';
-import interlockImg from '../assets/images/service_interlock_cleaning.png';
+import { ArrowRight, Sparkles, Car, Home, Bath, Grid, Trees, Shield } from 'lucide-react';
+import { useFeaturedServices } from '../hooks/useServices';
 import './Services.css';
 
+function getServiceIcon(slug = '') {
+  if (slug.includes('vehicle') || slug.includes('foam')) {
+    return <Car size={22} color="#0B42F6" strokeWidth={2.2} />;
+  }
+  if (slug.includes('house') || slug.includes('deep-cleaning')) {
+    return <Home size={22} color="#0B42F6" strokeWidth={2.2} />;
+  }
+  if (slug.includes('bathroom')) {
+    return <Bath size={22} color="#0B42F6" strokeWidth={2.2} />;
+  }
+  if (slug.includes('interlock')) {
+    return <Grid size={22} color="#0B42F6" strokeWidth={2.2} />;
+  }
+  if (slug.includes('garden')) {
+    return <Trees size={22} color="#0B42F6" strokeWidth={2.2} />;
+  }
+  return <Sparkles size={22} color="#0B42F6" strokeWidth={2.2} />;
+}
+
 export default function Services() {
-  const cardsData = [
-    {
-      id: 1,
-      title: 'VEHICLE DETAILING',
-      description: 'Premium touchless foam wash, interior vacuuming and ceramic coating protection.',
-      image: vehicleWashImg,
-      link: '/services/vehicle-foam-washing',
-      comingSoon: false,
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B42F6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 1 12.3V16c0 .6.4 1 1 1h2" />
-          <circle cx="7" cy="17" r="2" />
-          <circle cx="17" cy="17" r="2" />
-        </svg>
-      )
-    },
-    {
-      id: 2,
-      title: 'DEEP CLEANING',
-      description: 'Complete home deep cleaning to remove dust, dirt and allergens. A healthier, fresher living space for you and your family.',
-      image: deepCleaningImg,
-      link: '/services/house-office-deep-cleaning',
-      comingSoon: true,
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B42F6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-        </svg>
-      )
-    },
-    {
-      id: 3,
-      title: 'BATHROOM CLEANING',
-      description: 'Deep cleaning for a hygienic and germ-free bathroom.',
-      image: bathroomImg,
-      link: '/services/bathroom-sanitization-cleaning',
-      comingSoon: true,
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B42F6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 12h16a1 1 0 0 1 1 1v3a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-3a1 1 0 0 1 1-1z" />
-          <path d="M6 12V5a2 2 0 0 1 2-2h3" />
-        </svg>
-      )
-    },
-    {
-      id: 4,
-      title: 'INTERLOCK CLEANING',
-      description: 'Remove stains, moss and dirt from interlocks and pavements.',
-      image: interlockImg,
-      link: '/services/interlock-cleaning-restoration',
-      comingSoon: true,
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B42F6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="3" width="8" height="8" rx="1" />
-          <rect x="13" y="3" width="8" height="8" rx="1" />
-          <rect x="3" y="13" width="8" height="8" rx="1" />
-          <rect x="13" y="13" width="8" height="8" rx="1" />
-        </svg>
-      )
-    }
-  ];
+  const { featuredServices, loading } = useFeaturedServices();
+
+  const cardsData = featuredServices && featuredServices.length > 0 ? featuredServices : [];
 
   return (
     <section className="home-services-section" id="services">
@@ -108,32 +67,61 @@ export default function Services() {
 
         {/* 4 Featured Service Cards Grid */}
         <div className="home-services-cards-grid">
-          {cardsData.map((card) => (
-            <Link key={card.id} to={card.link} className={`home-card-wrapper ${card.comingSoon ? 'coming-soon-card' : ''}`} style={{ textDecoration: 'none' }}>
-              <div className="home-service-card">
-                <div className="home-card-image-wrapper">
-                  <img src={card.image} alt={card.title} className="home-card-img" />
-                </div>
-                <div className="home-card-body">
-                  <div className="home-card-icon-badge">{card.icon}</div>
-                  <h3 className="home-card-title">{card.title}</h3>
-                  <p className="home-card-desc">{card.description}</p>
-                  <div className="home-card-footer">
-                    {card.comingSoon ? (
-                      <div className="home-card-book-btn disabled-btn">
-                        <span>Coming Soon</span>
-                      </div>
-                    ) : (
-                      <div className="home-card-book-btn">
-                        <span>View Service</span>
-                        <ArrowRight size={14} />
-                      </div>
-                    )}
+          {loading && (!cardsData || cardsData.length === 0) ? (
+            [1, 2, 3, 4].map((n) => (
+              <div key={n} className="home-card-wrapper">
+                <div className="home-service-card" style={{ opacity: 0.7 }}>
+                  <div className="home-card-image-wrapper" style={{ background: '#E2E8F0', height: 180 }} />
+                  <div className="home-card-body">
+                    <div style={{ width: 140, height: 20, background: '#E2E8F0', borderRadius: 4, marginBottom: 8 }} />
+                    <div style={{ width: '100%', height: 14, background: '#E2E8F0', borderRadius: 4, marginBottom: 6 }} />
+                    <div style={{ width: '80%', height: 14, background: '#E2E8F0', borderRadius: 4 }} />
                   </div>
                 </div>
               </div>
-            </Link>
-          ))}
+            ))
+          ) : (
+            cardsData.map((card) => {
+              const isComingSoon = !card.isAvailable;
+              const linkUrl = card.link || `/services/${card.slug}`;
+              const imgUrl = card.heroImage || card.image;
+              const desc = card.shortDescription || card.description;
+
+              return (
+                <Link 
+                  key={card.id || card.slug} 
+                  to={linkUrl} 
+                  className={`home-card-wrapper ${isComingSoon ? 'coming-soon-card' : ''}`} 
+                  style={{ textDecoration: 'none' }}
+                >
+                  <div className="home-service-card">
+                    <div className="home-card-image-wrapper">
+                      <img src={imgUrl} alt={card.title} className="home-card-img" />
+                    </div>
+                    <div className="home-card-body">
+                      <div className="home-card-icon-badge">
+                        {card.icon || getServiceIcon(card.slug)}
+                      </div>
+                      <h3 className="home-card-title">{card.title}</h3>
+                      <p className="home-card-desc">{desc}</p>
+                      <div className="home-card-footer">
+                        {isComingSoon ? (
+                          <div className="home-card-book-btn disabled-btn">
+                            <span>Coming Soon</span>
+                          </div>
+                        ) : (
+                          <div className="home-card-book-btn">
+                            <span>View Service</span>
+                            <ArrowRight size={14} />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })
+          )}
         </div>
 
         {/* Centered View All Services Button */}

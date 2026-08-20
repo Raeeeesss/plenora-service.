@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   CheckCircle2, ChevronDown, ChevronUp, ShieldCheck, Award, Leaf, 
-  ArrowRight, Phone, ArrowUpRight, ArrowLeft 
+  ArrowRight, Phone, ArrowUpRight, ArrowLeft, Loader2 
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ServiceCard from '../components/ServiceCard';
 import { useBooking } from '../context/BookingContext';
-import { servicesData, getServiceBySlug } from '../data/servicesData';
+import { useServiceDetail } from '../hooks/useServiceDetail';
+import { useBusinessSettings } from '../hooks/useBusinessSettings';
 import '../styles/ServiceDetailPage.css';
 
 export default function ServiceDetailPage() {
@@ -17,13 +18,37 @@ export default function ServiceDetailPage() {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(null);
 
-  const service = getServiceBySlug(slug);
+  const { service, relatedServices, loading, notFound } = useServiceDetail(slug);
+  const { settings } = useBusinessSettings();
+
+  const phoneDisplay = settings?.primary_phone || '+91 8139895446';
+  const phoneTel = `tel:${phoneDisplay.replace(/\s+/g, '')}`;
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  if (!service) {
+  if (loading) {
+    return (
+      <div className="sdp-page-ref">
+        <section className="sdp-hero-section">
+          <Navbar />
+          <div className="sdp-hero-container" style={{ padding: '6rem 1rem', textAlign: 'center' }}>
+            <Loader2 size={40} color="#FFCC00" className="animate-spin" style={{ margin: '0 auto 16px', animation: 'spin 1s linear infinite' }} />
+            <h2 style={{ color: '#FFFFFF', fontSize: '1.5rem', fontWeight: 700 }}>Loading Service Details...</h2>
+          </div>
+          <div className="sdp-hero-scallop-divider" aria-hidden="true">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="sdp-cloud-svg">
+              <path d="M 0 90 L 0 45 Q 144 5, 288 45 Q 432 15, 576 45 Q 720 0, 864 45 Q 1008 15, 1152 45 Q 1296 5, 1440 45 L 1440 90 Z" fill="#FFFDF5" />
+            </svg>
+          </div>
+        </section>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (notFound || !service) {
     return (
       <div className="sdp-page-ref">
         {/* Not Found Hero Header */}
@@ -65,11 +90,6 @@ export default function ServiceDetailPage() {
       </div>
     );
   }
-
-  // Get 3 related services
-  const relatedServices = Object.values(servicesData)
-    .filter((s) => s.slug !== service.slug)
-    .slice(0, 3);
 
   return (
     <div className="sdp-page-ref">
@@ -137,7 +157,7 @@ export default function ServiceDetailPage() {
                   <ArrowRight size={16} />
                 </button>
               )}
-              <a href="tel:+918139895446" className="sdp-btn-secondary">
+              <a href={phoneTel} className="sdp-btn-secondary">
                 <Phone size={15} fill="#111827" color="#111827" />
                 <span>Call for Details</span>
               </a>

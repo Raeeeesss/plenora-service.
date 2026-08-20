@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { X, User, Mail, MessageSquare, Sparkles, Send } from 'lucide-react';
+import { useServices } from '../hooks/useServices';
+import { useBusinessSettings } from '../hooks/useBusinessSettings';
+import { submitContactInquiry } from '../services/inquiryApi';
 import './BookingModal.css';
 
 export default function BookingModal({ isOpen, onClose, initialService }) {
+  const { services, loading: servicesLoading } = useServices();
+  const { settings } = useBusinessSettings();
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -11,7 +17,7 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     message: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (initialService) {
@@ -42,11 +48,11 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     setFormData({ ...formData, phone: numericValue });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
 
-    const whatsappNumber = '918139895446';
+    const whatsappNumber = settings.whatsapp_number ? settings.whatsapp_number.replace(/\D/g, '') : '918139895446';
     const messageText = 
       `*New Booking Inquiry from Plenora Website*\n\n` +
       `*Name:* ${formData.fullName}\n` +
@@ -55,13 +61,23 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
       `*Selected Service:* ${formData.service || 'General Inquiry'}\n` +
       `*Message:* ${formData.message || 'N/A'}`;
 
+    // 1. Submit lead to Supabase Edge Function in background
+    submitContactInquiry({
+      fullName: formData.fullName,
+      phone: `+91${formData.phone}`,
+      email: formData.email,
+      serviceName: formData.service,
+      message: formData.message,
+      source: 'WEBSITE_BOOKING_MODAL',
+    }).catch((err) => console.warn('[BookingModal] Lead submission warning:', err));
+
+    // 2. Open WhatsApp deep link
     const encodedMessage = encodeURIComponent(messageText);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
     window.open(whatsappUrl, '_blank');
 
     setTimeout(() => {
-      setSubmitted(false);
+      setSubmitting(false);
       onClose();
       setFormData({
         fullName: '',
@@ -181,16 +197,31 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
                   required 
                   className="bm-select-field"
                 >
-                  <option value="Vehicle Detailing">Vehicle Detailing (Available Now)</option>
-                  <option value="House & Office Deep Cleaning" disabled style={{ color: '#94A3B8' }}>House & Office Deep Cleaning (Coming Soon)</option>
-                  <option value="Bathroom Deep Cleaning & Sanitization" disabled style={{ color: '#94A3B8' }}>Bathroom Deep Cleaning (Coming Soon)</option>
-                  <option value="Interlock Cleaning & Restoration" disabled style={{ color: '#94A3B8' }}>Interlock Cleaning (Coming Soon)</option>
-                  <option value="Water Tank Cleaning & Disinfection" disabled style={{ color: '#94A3B8' }}>Water Tank Cleaning (Coming Soon)</option>
-                  <option value="ACP & Glass Pressure Cleaning" disabled style={{ color: '#94A3B8' }}>ACP & Glass Cleaning (Coming Soon)</option>
-                  <option value="Roof, Wall & Floor Deep Cleaning" disabled style={{ color: '#94A3B8' }}>Roof, Wall & Floor Cleaning (Coming Soon)</option>
-                  <option value="Garden & Landscaping Care" disabled style={{ color: '#94A3B8' }}>Garden & Landscaping Care (Coming Soon)</option>
-                  <option value="Sofa & Mattress Deep Cleaning" disabled style={{ color: '#94A3B8' }}>Sofa & Mattress Cleaning (Coming Soon)</option>
-                  <option value="Solar Panel Cleaning" disabled style={{ color: '#94A3B8' }}>Solar Panel Cleaning (Coming Soon)</option>
+                  {services && services.length > 0 ? (
+                    services.map((s) => (
+                      <option 
+                        key={s.id || s.slug} 
+                        value={s.title}
+                        disabled={!s.isAvailable}
+                        style={{ color: s.isAvailable ? '#111827' : '#94A3B8' }}
+                      >
+                        {s.title} {s.isAvailable ? '(Available Now)' : '(Coming Soon)'}
+                      </option>
+                    ))
+                  ) : (
+                    <>
+                      <option value="Vehicle Detailing">Vehicle Detailing (Available Now)</option>
+                      <option value="House & Office Deep Cleaning" disabled style={{ color: '#94A3B8' }}>House & Office Deep Cleaning (Coming Soon)</option>
+                      <option value="Bathroom Deep Cleaning" disabled style={{ color: '#94A3B8' }}>Bathroom Deep Cleaning (Coming Soon)</option>
+                      <option value="Interlock Cleaning" disabled style={{ color: '#94A3B8' }}>Interlock Cleaning (Coming Soon)</option>
+                      <option value="Tank Cleaning" disabled style={{ color: '#94A3B8' }}>Water Tank Cleaning (Coming Soon)</option>
+                      <option value="ACP & Glass Cleaning" disabled style={{ color: '#94A3B8' }}>ACP & Glass Cleaning (Coming Soon)</option>
+                      <option value="Roof, Wall & Floor Cleaning" disabled style={{ color: '#94A3B8' }}>Roof, Wall & Floor Cleaning (Coming Soon)</option>
+                      <option value="Garden & Landscaping Care" disabled style={{ color: '#94A3B8' }}>Garden & Landscaping Care (Coming Soon)</option>
+                      <option value="Sofa & Mattress Cleaning" disabled style={{ color: '#94A3B8' }}>Sofa & Mattress Cleaning (Coming Soon)</option>
+                      <option value="Solar Panel Cleaning" disabled style={{ color: '#94A3B8' }}>Solar Panel Cleaning (Coming Soon)</option>
+                    </>
+                  )}
                   <option value="General Inquiry / Other">General Inquiry / Other</option>
                 </select>
               </div>
